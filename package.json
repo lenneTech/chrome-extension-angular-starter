@@ -1,0 +1,85 @@
+{
+  "name": "@lenne.tech/chrome-extension-angular-starter",
+  "version": "0.0.1",
+  "description": "Starter for Chrome Extension with Angular",
+  "keywords": [
+    "lenne.Tech",
+    "chrome",
+    "extension",
+    "angular",
+    "starter"
+  ],
+  "author": "Kai Haase <kai.haase@lenne.tech> (http://lenne.tech)",
+  "homepage": "http://lenne.tech",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lenneTech/chrome-extension-angular-starter"
+  },
+  "bugs": {
+    "url": "https://github.com/lenneTech/cli/issues"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build:angular && npm run build:chrome",
+    "build:angular": "ng build",
+    "build:angular-production": "ng build --prod",
+    "build:chrome": "webpack --config chrome/webpack.config.js",
+    "build:chrome-production": "webpack -p --config chrome/webpack.config.prod.js",
+    "build:production": "npm run build:angular-production && npm run build:chrome-production && npm run pack",
+    "clean": "rimraf angular/dist",
+    "format": "prettier --write 'angular/src/**/*.{js,ts,tsx,json}' 'chrome/src/**/*.{js,ts,tsx,json}'",
+    "ng": "ng",
+    "start": "npm run watch",
+    "pack": "cd angular/dist && bestzip ../../cea-starter.zip *",
+    "watch": "npm run clean && npm-run-all --parallel watch:*",
+    "watch:angular": "ng build --watch --delete-output-path false",
+    "watch:chrome": "webpack --config chrome/webpack.config.js -w"
+  },
+  "dependencies": {
+    "@angular/animations": "8.2.8",
+    "@angular/common": "8.2.8",
+    "@angular/compiler": "8.2.8",
+    "@angular/core": "8.2.8",
+    "@angular/forms": "8.2.8",
+    "@angular/platform-browser": "8.2.8",
+    "@angular/platform-browser-dynamic": "8.2.8",
+    "@angular/router": "8.2.8",
+    "@types/lodash": "^4.14.141",
+    "core-js": "3.2.1",
+    "lodash": "4.17.15",
+    "query-string": "6.8.3",
+    "rxjs": "6.5.3",
+    "tslib": "1.10.0",
+    "zone.js": "0.10.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.803.6",
+    "@angular/cli": "8.3.6",
+    "@angular/compiler-cli": "8.2.8",
+    "@angular/language-service": "8.2.8",
+    "@lenne.tech/npm-package-helper": "0.0.10",
+    "@types/chrome": "0.0.89",
+    "@types/node": "12.7.8",
+    "awesome-typescript-loader": "5.2.1",
+    "bestzip": "2.1.4",
+    "codelyzer": "5.1.2",
+    "husky": "3.0.7",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.18.2",
+    "pretty-quick": "1.11.1",
+    "rimraf": "3.0.0",
+    "ts-node": "8.4.1",
+    "tslint": "5.20.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-config-standard": "8.0.1",
+    "typescript": "3.5.3",
+    "webpack": "4.41.0",
+    "webpack-cli": "3.3.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "ts-node --skip-project extras/sync-version.ts && pretty-quick --staged",
+      "pre-push": "npm run lint"
+    }
+  }
+}

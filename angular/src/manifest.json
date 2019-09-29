@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Chrome Extension Angular Starter",
+  "short_name": "CEA Starter",
+  "version": "0.0.1",
+  "description": "Starter for new Chrome Extensions via Angular",
+  "permissions": ["tabs", "activeTab", "declarativeContent", "storage", "unlimitedStorage"],
+  "browser_action": {},
+  "content_scripts": [
+    {
+      "js": ["site.js"],
+      "matches": ["https://github.com/lenneTech/*"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "16": "assets/images/favicon-16.png",
+    "32": "assets/images/favicon-32.png",
+    "48": "assets/images/favicon-48.png",
+    "128": "assets/images/favicon-128.png",
+    "192": "assets/images/favicon-192.png"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

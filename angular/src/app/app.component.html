@@ -1,0 +1,20 @@
+<h1>Chrome Extension Starter</h1>
+<small id="version">Version: {{version}}</small>
+
+<div id="logo">
+  <img alt="Extension Logo"
+       src="assets/images/favicon-192.png"
+       width="100">
+</div>
+
+<div id="content">
+  Welcome to Chrome Extension starter
+</div>
+
+<div *ngIf="data?.length">
+  <h2>Messages from Site script</h2>
+  <ul>
+    <li *ngFor="let item of data">{{item.value}}</li>
+  </ul>
+  <button (click)="clearData()">Clear</button>
+</div>
